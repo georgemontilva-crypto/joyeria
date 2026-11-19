@@ -30,7 +30,7 @@ export function Home() {
             </div>
           </div>
           <div className="hero__photo">
-            <img src="/editorial/hero-cross.jpg" alt={t.home.heroAlt} fetchPriority="high" />
+            <img src="/editorial/v2/hero-cross.jpg" alt={t.home.heroAlt} fetchPriority="high" />
           </div>
         </div>
       </section>
@@ -75,7 +75,7 @@ export function Home() {
       <section className="section band on-navy">
         <div className="page band__inner">
           <div className="band__photo">
-            <img src="/catalog/emerald-solitaire-pendant-1.jpg" alt={t.home.emeraldAlt} loading="lazy" />
+            <img src="/editorial/v2/emerald-bracelet.jpg" alt={t.home.emeraldAlt} loading="lazy" />
           </div>
           <div>
             <h2>{t.home.emeraldTitle}</h2>
@@ -97,7 +97,7 @@ export function Home() {
                 {t.home.storyCta}
               </Link>
             </div>
-            <img src="/editorial/presentation-box.jpg" alt={t.home.storyAlt} loading="lazy" />
+            <img src="/editorial/v2/emerald-stud.jpg" alt={t.home.storyAlt} loading="lazy" />
           </div>
         </div>
       </section>

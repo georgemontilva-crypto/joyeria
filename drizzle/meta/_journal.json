@@ -15,6 +15,13 @@
       "when": 1795046310233,
       "tag": "0001_studio_photos",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1795132182158,
+      "tag": "0002_studio_photos_2",
+      "breakpoints": true
     }
   ]
 }

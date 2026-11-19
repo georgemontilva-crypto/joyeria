@@ -1,6 +1,6 @@
 // Starting catalog built from the photographs the client supplied.
-// Pieces marked `studio: true` use the newer cut-out photos in /catalog/v2;
-// the rest still use the first batch of photos in /catalog.
+// Pieces marked `studio: true` use the studio cut-out photos in /catalog/v2;
+// the few that are not marked still use the first batch of photos in /catalog.
 // Names, materials and descriptions are read from the photos and must be
 // confirmed by Madison D'Or. Prices are left empty on purpose: a piece with
 // no price shows "Price on request" and cannot be bought until one is set
@@ -21,7 +21,7 @@ export const seedCategories = [
     nameEs: "Dijes",
     descriptionEn: "Crosses and solitaires set with precious stones.",
     descriptionEs: "Cruces y solitarios engastados con piedras preciosas.",
-    image: "/catalog/emerald-cross-1.jpg",
+    image: "/catalog/v2/emerald-cross-1.jpg",
   },
   {
     slug: "bracelets",
@@ -56,7 +56,7 @@ export const seedCollections = [
     nameEs: "Esmeraldas",
     descriptionEn: "Green stones set in yellow gold: a cross, a solitaire, a pair of studs and a beaded bracelet.",
     descriptionEs: "Piedras verdes engastadas en oro amarillo: una cruz, un solitario, un par de topos y una pulsera de esferas.",
-    image: "/editorial/emerald-pendant.jpg",
+    image: "/editorial/v2/emerald-bracelet.jpg",
   },
   {
     slug: "mariner-link",
@@ -101,6 +101,7 @@ export const seedProducts: SeedProduct[] = [
     detailsEn: "Metal: Yellow gold\nStones: Emerald, white accent stones\nChain: Flat mariner link",
     detailsEs: "Metal: Oro amarillo\nPiedras: Esmeralda, piedras blancas de acento\nCadena: Eslabón marinero plano",
     images: 2,
+    studio: true,
     featured: true,
   },
   {
@@ -117,6 +118,7 @@ export const seedProducts: SeedProduct[] = [
     detailsEn: "Metal: Yellow gold\nStone: Emerald, four-claw setting\nChain: Fine box chain",
     detailsEs: "Metal: Oro amarillo\nPiedra: Esmeralda, engaste de cuatro garras\nCadena: Veneciana fina",
     images: 2,
+    studio: true,
     featured: true,
   },
   {
@@ -146,7 +148,8 @@ export const seedProducts: SeedProduct[] = [
       "Eslabones barbados anchos y planos, pulidos a espejo, para que la cadena descanse a ras de la piel y refleje la luz en todo su largo.",
     detailsEn: "Metal: Yellow gold\nLink: Flat curb\nFinish: High polish",
     detailsEs: "Metal: Oro amarillo\nEslabón: Barbado plano\nAcabado: Pulido brillante",
-    images: 3,
+    images: 2,
+    studio: true,
     featured: true,
   },
   {
@@ -160,6 +163,7 @@ export const seedProducts: SeedProduct[] = [
     detailsEn: "Metal: Yellow gold\nLink: Curb\nFinish: High polish",
     detailsEs: "Metal: Oro amarillo\nEslabón: Barbado\nAcabado: Pulido brillante",
     images: 2,
+    studio: true,
   },
   {
     slug: "cuban-chain",
@@ -183,7 +187,8 @@ export const seedProducts: SeedProduct[] = [
     descriptionEs: "Hileras de pequeños eslabones tejidos uno junto al otro en una banda de oro ancha y flexible.",
     detailsEn: "Metal: Yellow gold\nLink: Bismark weave",
     detailsEs: "Metal: Oro amarillo\nEslabón: Tejido bismark",
-    images: 1,
+    images: 2,
+    studio: true,
     isNew: true,
   },
   {
@@ -196,7 +201,8 @@ export const seedProducts: SeedProduct[] = [
     descriptionEs: "Una cadena barbada más delgada que descansa a la altura de la clavícula. Ligera para el uso diario.",
     detailsEn: "Metal: Yellow gold\nLink: Fine curb",
     detailsEs: "Metal: Oro amarillo\nEslabón: Barbado fino",
-    images: 3,
+    images: 2,
+    studio: true,
   },
   {
     slug: "mariner-chain",
@@ -221,12 +227,13 @@ export const seedProducts: SeedProduct[] = [
     nameEn: "Emerald bead bracelet",
     nameEs: "Pulsera de esferas con esmeralda",
     descriptionEn:
-      "Diamond-cut gold beads strung in a row around a square-cut green stone, finished with an adjustable cord closure.",
+      "Fluted gold beads strung in a row around a square-cut green stone, finished with an adjustable cord closure.",
     descriptionEs:
-      "Esferas de oro diamantadas en hilera alrededor de una piedra verde de talla cuadrada, con cierre de cordón ajustable.",
+      "Esferas de oro acanaladas en hilera alrededor de una piedra verde de talla cuadrada, con cierre de cordón ajustable.",
     detailsEn: "Metal: Yellow gold\nStone: Emerald, square cut\nClosure: Adjustable cord",
     detailsEs: "Metal: Oro amarillo\nPiedra: Esmeralda, talla cuadrada\nCierre: Cordón ajustable",
-    images: 2,
+    images: 3,
+    studio: true,
     featured: true,
     isNew: true,
   },
@@ -307,7 +314,8 @@ export const seedProducts: SeedProduct[] = [
     descriptionEs: "Un par de piedras verdes redondas en engaste de garras de oro. Se presentan en estuche con luz.",
     detailsEn: "Metal: Yellow gold\nStone: Emerald, round\nSetting: Claw",
     detailsEs: "Metal: Oro amarillo\nPiedra: Esmeralda, redonda\nEngaste: Garras",
-    images: 1,
+    images: 3,
+    studio: true,
     featured: true,
   },
   {
@@ -430,13 +438,13 @@ export const seedProducts: SeedProduct[] = [
 
 // Order of the "Our selection" sort and of the featured pieces on the home page.
 export const curatedOrder = [
-  // pieces with studio photos lead
   "mariner-chain", "heart-charm-bracelet", "slim-hoops", "bypass-ring", "sun-charm-bracelet",
   "tricolor-charm-bracelet", "drop-earrings", "mariner-studs", "dolphin-charm-bracelet",
   "tricolor-mariner-bracelet", "twist-hoops",
   "flat-curb-chain", "emerald-solitaire-pendant", "emerald-studs", "emerald-cross",
-  "emerald-bead-bracelet", "curb-chain", "heritage-cross", "bismark-chain", "bismark-bracelet",
-  "fine-curb-chain", "teddy-charm-bracelet", "cuban-chain", "flat-link-bracelet",
+  "emerald-bead-bracelet", "curb-chain", "bismark-chain", "fine-curb-chain",
+  // still on first-batch photos, so they close the list
+  "heritage-cross", "bismark-bracelet", "teddy-charm-bracelet", "cuban-chain", "flat-link-bracelet",
 ];
 
 export const seedSettings: Record<string, string> = {

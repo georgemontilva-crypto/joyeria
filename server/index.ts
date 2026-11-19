@@ -152,7 +152,7 @@ function escapeHtml(s: string) {
 async function headFor(urlPath: string) {
   let title = `${SITE_NAME} — Fine gold jewelry`;
   let description = DEFAULT_DESCRIPTION;
-  let image = `${env.siteUrl}/editorial/hero-cross.jpg`;
+  let image = `${env.siteUrl}/editorial/v2/hero-cross.jpg`;
   let noindex = /^\/(admin|bag|order)/.test(urlPath);
 
   const match = urlPath.match(/^\/product\/([^/?#]+)/);

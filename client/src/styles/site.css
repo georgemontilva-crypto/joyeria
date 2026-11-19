@@ -468,14 +468,17 @@ textarea {
   position: relative;
   align-self: stretch;
   min-height: 24rem;
+  /* The entrance animation isolates this box, so the photo blends against this
+     background, not the section's. It has to be the same navy for black to vanish. */
+  background: var(--navy);
   animation: rise 1.2s ease-out 0.3s both;
 }
 
 .hero__photo img {
   position: absolute;
-  inset: -1.5rem 0 -1.5rem 0;
+  inset: 0;
   width: 100%;
-  height: calc(100% + 3rem);
+  height: 100%;
   object-fit: cover;
   object-position: 50% 62%;
   /* Screen blending lets the black velvet take on the page's navy, so only gold and stone remain. */
@@ -1547,11 +1550,6 @@ textarea {
     min-height: 0;
     height: 26rem;
     margin-top: 1rem;
-  }
-
-  .hero__photo img {
-    inset: 0;
-    height: 100%;
   }
 
   .grid {
