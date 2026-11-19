@@ -75,7 +75,7 @@ export async function seedIfEmpty() {
     await db.insert(schema.productImages).values(
       Array.from({ length: p.images }, (_, k) => ({
         productId,
-        url: `/catalog/${p.slug}-${k + 1}.jpg`,
+        url: `/catalog/${p.studio ? "v2/" : ""}${p.slug}-${k + 1}.jpg`,
         sortOrder: k,
       })),
     );

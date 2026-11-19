@@ -1,4 +1,6 @@
 // Starting catalog built from the photographs the client supplied.
+// Pieces marked `studio: true` use the newer cut-out photos in /catalog/v2;
+// the rest still use the first batch of photos in /catalog.
 // Names, materials and descriptions are read from the photos and must be
 // confirmed by Madison D'Or. Prices are left empty on purpose: a piece with
 // no price shows "Price on request" and cannot be bought until one is set
@@ -11,7 +13,7 @@ export const seedCategories = [
     nameEs: "Cadenas",
     descriptionEn: "Gold chains to wear alone or with a pendant.",
     descriptionEs: "Cadenas de oro para llevar solas o con un dije.",
-    image: "/catalog/flat-curb-chain-1.jpg",
+    image: "/catalog/v2/mariner-chain-1.jpg",
   },
   {
     slug: "pendants",
@@ -27,15 +29,23 @@ export const seedCategories = [
     nameEs: "Pulseras",
     descriptionEn: "Link, woven and charm bracelets in gold.",
     descriptionEs: "Pulseras de eslabones, tejidas y con dijes, en oro.",
-    image: "/catalog/heart-charm-bracelet-1.jpg",
+    image: "/catalog/v2/heart-charm-bracelet-1.jpg",
   },
   {
     slug: "earrings",
     nameEn: "Earrings",
     nameEs: "Aretes",
-    descriptionEn: "Hoops and studs for every day.",
-    descriptionEs: "Argollas y topos para todos los días.",
-    image: "/catalog/slim-hoops-1.jpg",
+    descriptionEn: "Hoops, studs and drops.",
+    descriptionEs: "Argollas, topos y aretes de gota.",
+    image: "/catalog/v2/slim-hoops-1.jpg",
+  },
+  {
+    slug: "rings",
+    nameEn: "Rings",
+    nameEs: "Anillos",
+    descriptionEn: "Gold rings, plain or set with stones.",
+    descriptionEs: "Anillos de oro, lisos o con piedras.",
+    image: "/catalog/v2/bypass-ring-1.jpg",
   },
 ];
 
@@ -54,7 +64,7 @@ export const seedCollections = [
     nameEs: "Eslabón marinero",
     descriptionEn: "The oval anchor link, carried across a chain, bracelets and studs.",
     descriptionEs: "El eslabón ovalado tipo ancla, en cadena, pulseras y topos.",
-    image: "/catalog/mariner-chain-1.jpg",
+    image: "/catalog/v2/mariner-chain-2.jpg",
   },
 ];
 
@@ -70,6 +80,8 @@ type SeedProduct = {
   detailsEn: string;
   detailsEs: string;
   images: number;
+  /** true when the photos are the studio cut-outs stored under /catalog/v2 */
+  studio?: boolean;
   featured?: boolean;
   isNew?: boolean;
 };
@@ -198,6 +210,7 @@ export const seedProducts: SeedProduct[] = [
     detailsEn: "Metal: Yellow gold\nLink: Puffed mariner",
     detailsEs: "Metal: Oro amarillo\nEslabón: Marinero abombado",
     images: 2,
+    studio: true,
     featured: true,
   },
   {
@@ -240,7 +253,8 @@ export const seedProducts: SeedProduct[] = [
     descriptionEs: "Eslabones marineros que alternan oro amarillo, blanco y rosado, con un pequeño dije esculpido que cuelga de la cadena.",
     detailsEn: "Metal: Yellow, white and rose gold\nLink: Mariner\nDetail: Sculpted charm",
     detailsEs: "Metal: Oro amarillo, blanco y rosado\nEslabón: Marinero\nDetalle: Dije esculpido",
-    images: 3,
+    images: 2,
+    studio: true,
   },
   {
     slug: "heart-charm-bracelet",
@@ -254,6 +268,7 @@ export const seedProducts: SeedProduct[] = [
     detailsEn: "Metal: Yellow gold\nLink: Puffed mariner\nDetail: Heart charm",
     detailsEs: "Metal: Oro amarillo\nEslabón: Marinero abombado\nDetalle: Dije de corazón",
     images: 2,
+    studio: true,
     featured: true,
   },
   {
@@ -306,6 +321,7 @@ export const seedProducts: SeedProduct[] = [
     detailsEn: "Metal: Yellow gold\nStyle: Large hoop\nClosure: Endless",
     detailsEs: "Metal: Oro amarillo\nEstilo: Argolla grande\nCierre: Continuo",
     images: 1,
+    studio: true,
     featured: true,
   },
   {
@@ -319,6 +335,7 @@ export const seedProducts: SeedProduct[] = [
     detailsEn: "Metal: Yellow gold\nStyle: Mini hoop, rope twist",
     detailsEs: "Metal: Oro amarillo\nEstilo: Argolla mini, torsión cordón",
     images: 1,
+    studio: true,
   },
   {
     slug: "mariner-studs",
@@ -331,15 +348,94 @@ export const seedProducts: SeedProduct[] = [
     descriptionEs: "Un eslabón marinero en cada oreja. Hacen juego con la cadena y las pulseras marineras.",
     detailsEn: "Metal: Yellow gold\nStyle: Stud, mariner link",
     detailsEs: "Metal: Oro amarillo\nEstilo: Topo, eslabón marinero",
+    images: 2,
+    studio: true,
+  },
+  {
+    slug: "tricolor-mariner-bracelet",
+    sku: "MD-B-007",
+    category: "bracelets",
+    collection: "mariner-link",
+    nameEn: "Tricolor mariner bracelet",
+    nameEs: "Pulsera marinera tricolor",
+    descriptionEn: "Slim mariner links alternating yellow, white and rose gold, with an extension chain to adjust the fit.",
+    descriptionEs: "Eslabones marineros delgados que alternan oro amarillo, blanco y rosado, con cadena de extensión para ajustar el largo.",
+    detailsEn: "Metal: Yellow, white and rose gold\nLink: Fine mariner\nClosure: Clasp with extension chain",
+    detailsEs: "Metal: Oro amarillo, blanco y rosado\nEslabón: Marinero fino\nCierre: Broche con cadena de extensión",
+    images: 2,
+    studio: true,
+    isNew: true,
+  },
+  {
+    slug: "dolphin-charm-bracelet",
+    sku: "MD-B-008",
+    category: "bracelets",
+    collection: "mariner-link",
+    nameEn: "Mariner bracelet with dolphin charm",
+    nameEs: "Pulsera marinera con delfín",
+    descriptionEn: "A fine mariner bracelet with a small dolphin charm near the clasp and an extension chain to adjust the fit.",
+    descriptionEs: "Pulsera marinera fina con un pequeño dije de delfín junto al broche y cadena de extensión para ajustar el largo.",
+    detailsEn: "Metal: Yellow gold\nLink: Mariner\nDetail: Dolphin charm\nClosure: Clasp with extension chain",
+    detailsEs: "Metal: Oro amarillo\nEslabón: Marinero\nDetalle: Dije de delfín\nCierre: Broche con cadena de extensión",
+    images: 2,
+    studio: true,
+    isNew: true,
+  },
+  {
+    slug: "sun-charm-bracelet",
+    sku: "MD-B-009",
+    category: "bracelets",
+    collection: "mariner-link",
+    nameEn: "Mariner bracelet with sun charm",
+    nameEs: "Pulsera marinera con sol",
+    descriptionEn: "Puffed mariner links with a round sun charm, its face ringed by small gold beads.",
+    descriptionEs: "Eslabones marineros abombados con un dije redondo de sol, de rostro rodeado por pequeñas esferas de oro.",
+    detailsEn: "Metal: Yellow gold\nLink: Puffed mariner\nDetail: Sun charm",
+    detailsEs: "Metal: Oro amarillo\nEslabón: Marinero abombado\nDetalle: Dije de sol",
+    images: 2,
+    studio: true,
+    featured: true,
+    isNew: true,
+  },
+  {
+    slug: "drop-earrings",
+    sku: "MD-E-005",
+    category: "earrings",
+    nameEn: "Faceted drop earrings",
+    nameEs: "Aretes de gota facetados",
+    descriptionEn: "Teardrop drops with a faceted surface that mirrors the light, hung from lever-back hooks.",
+    descriptionEs: "Gotas de superficie facetada que refleja la luz, colgadas de ganchos con cierre de palanca.",
+    detailsEn: "Metal: Yellow gold\nStyle: Drop\nClosure: Lever back",
+    detailsEs: "Metal: Oro amarillo\nEstilo: Gota\nCierre: Palanca",
     images: 1,
+    studio: true,
+    isNew: true,
+  },
+  {
+    slug: "bypass-ring",
+    sku: "MD-R-001",
+    category: "rings",
+    nameEn: "Two-sphere ring",
+    nameEs: "Anillo de dos esferas",
+    descriptionEn: "An open band that ends in two spheres: one polished, one set with small white stones.",
+    descriptionEs: "Aro abierto que termina en dos esferas: una pulida y otra engastada con pequeñas piedras blancas.",
+    detailsEn: "Metal: Yellow gold\nStones: White accent stones\nStyle: Open band",
+    detailsEs: "Metal: Oro amarillo\nPiedras: Piedras blancas de acento\nEstilo: Aro abierto",
+    images: 1,
+    studio: true,
+    featured: true,
+    isNew: true,
   },
 ];
 
 // Order of the "Our selection" sort and of the featured pieces on the home page.
 export const curatedOrder = [
-  "flat-curb-chain", "emerald-solitaire-pendant", "heart-charm-bracelet", "slim-hoops", "emerald-studs",
-  "emerald-cross", "mariner-chain", "emerald-bead-bracelet", "curb-chain", "tricolor-charm-bracelet",
-  "twist-hoops", "heritage-cross", "bismark-chain", "bismark-bracelet", "mariner-studs",
+  // pieces with studio photos lead
+  "mariner-chain", "heart-charm-bracelet", "slim-hoops", "bypass-ring", "sun-charm-bracelet",
+  "tricolor-charm-bracelet", "drop-earrings", "mariner-studs", "dolphin-charm-bracelet",
+  "tricolor-mariner-bracelet", "twist-hoops",
+  "flat-curb-chain", "emerald-solitaire-pendant", "emerald-studs", "emerald-cross",
+  "emerald-bead-bracelet", "curb-chain", "heritage-cross", "bismark-chain", "bismark-bracelet",
   "fine-curb-chain", "teddy-charm-bracelet", "cuban-chain", "flat-link-bracelet",
 ];
 

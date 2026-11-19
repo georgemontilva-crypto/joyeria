@@ -505,7 +505,8 @@ textarea {
 
 .type-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  /* as many columns as fit, so adding a category in the admin panel never leaves a broken row */
+  grid-template-columns: repeat(auto-fit, minmax(10.5rem, 1fr));
   gap: 1.25rem;
 }
 
