@@ -1,5 +1,5 @@
 // Starting catalog built from the photographs the client supplied.
-// Pieces marked `studio: true` use the studio cut-out photos in /catalog/v2;
+// Pieces marked `studio: true` use the studio cut-out photos in /catalog/v3;
 // the few that are not marked still use the first batch of photos in /catalog.
 // Names, materials and descriptions are read from the photos and must be
 // confirmed by Madison D'Or. Prices are left empty on purpose: a piece with
@@ -13,7 +13,7 @@ export const seedCategories = [
     nameEs: "Cadenas",
     descriptionEn: "Gold chains to wear alone or with a pendant.",
     descriptionEs: "Cadenas de oro para llevar solas o con un dije.",
-    image: "/catalog/v2/mariner-chain-1.jpg",
+    image: "/catalog/v3/mariner-chain-1.jpg",
   },
   {
     slug: "pendants",
@@ -21,7 +21,7 @@ export const seedCategories = [
     nameEs: "Dijes",
     descriptionEn: "Crosses and solitaires set with precious stones.",
     descriptionEs: "Cruces y solitarios engastados con piedras preciosas.",
-    image: "/catalog/v2/emerald-cross-1.jpg",
+    image: "/catalog/v3/emerald-cross-1.jpg",
   },
   {
     slug: "bracelets",
@@ -29,7 +29,7 @@ export const seedCategories = [
     nameEs: "Pulseras",
     descriptionEn: "Link, woven and charm bracelets in gold.",
     descriptionEs: "Pulseras de eslabones, tejidas y con dijes, en oro.",
-    image: "/catalog/v2/heart-charm-bracelet-1.jpg",
+    image: "/catalog/v3/heart-charm-bracelet-1.jpg",
   },
   {
     slug: "earrings",
@@ -37,7 +37,7 @@ export const seedCategories = [
     nameEs: "Aretes",
     descriptionEn: "Hoops, studs and drops.",
     descriptionEs: "Argollas, topos y aretes de gota.",
-    image: "/catalog/v2/slim-hoops-1.jpg",
+    image: "/catalog/v3/slim-hoops-1.jpg",
   },
   {
     slug: "rings",
@@ -45,7 +45,7 @@ export const seedCategories = [
     nameEs: "Anillos",
     descriptionEn: "Gold rings, plain or set with stones.",
     descriptionEs: "Anillos de oro, lisos o con piedras.",
-    image: "/catalog/v2/bypass-ring-1.jpg",
+    image: "/catalog/v3/bypass-ring-1.jpg",
   },
 ];
 
@@ -56,7 +56,7 @@ export const seedCollections = [
     nameEs: "Esmeraldas",
     descriptionEn: "Green stones set in yellow gold: a cross, a solitaire, a pair of studs and a beaded bracelet.",
     descriptionEs: "Piedras verdes engastadas en oro amarillo: una cruz, un solitario, un par de topos y una pulsera de esferas.",
-    image: "/editorial/v2/emerald-bracelet.jpg",
+    image: "/editorial/v3/emerald-bracelet.jpg",
   },
   {
     slug: "mariner-link",
@@ -64,7 +64,7 @@ export const seedCollections = [
     nameEs: "Eslabón marinero",
     descriptionEn: "The oval anchor link, carried across a chain, bracelets and studs.",
     descriptionEs: "El eslabón ovalado tipo ancla, en cadena, pulseras y topos.",
-    image: "/catalog/v2/mariner-chain-2.jpg",
+    image: "/catalog/v3/mariner-chain-2.jpg",
   },
 ];
 
@@ -80,7 +80,7 @@ type SeedProduct = {
   detailsEn: string;
   detailsEs: string;
   images: number;
-  /** true when the photos are the studio cut-outs stored under /catalog/v2 */
+  /** true when the photos are the studio cut-outs stored under /catalog/v3 */
   studio?: boolean;
   featured?: boolean;
   isNew?: boolean;

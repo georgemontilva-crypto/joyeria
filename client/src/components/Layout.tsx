@@ -1,5 +1,5 @@
 import { useEffect, useState, type ReactNode } from "react";
-import { Link, useLocation } from "wouter";
+import { Link, useLocation, useSearch } from "wouter";
 import { useI18n } from "@/lib/i18n";
 import { useBag } from "@/lib/bag";
 import { trpc } from "@/trpc";
@@ -20,14 +20,16 @@ function LanguageToggle() {
 }
 
 function Header() {
-  const { t, locale } = useI18n();
+  const { t, locale, pick } = useI18n();
   const { count } = useBag();
   const [location] = useLocation();
+  const search = useSearch();
   const [open, setOpen] = useState(false);
   const site = trpc.shop.site.useQuery();
   const announcement = site.data?.settings[locale === "es" ? "announcementEs" : "announcementEn"];
+  const activeCategory = location === "/shop" ? new URLSearchParams(search).get("category") : null;
 
-  useEffect(() => setOpen(false), [location]);
+  useEffect(() => setOpen(false), [location, search]);
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
     if (!open) return;
@@ -36,45 +38,55 @@ function Header() {
     return () => window.removeEventListener("keydown", onKey);
   }, [open]);
 
+  const current = (href: string): "page" | undefined => (location === href || location.startsWith(`${href}/`) ? "page" : undefined);
+  // The main row is the catalogue itself: one link per category, then the two editorial pages.
   const links = [
-    { href: "/shop", label: t.nav.shop },
-    { href: "/collections", label: t.nav.collections },
-    { href: "/our-story", label: t.nav.story },
+    ...(site.data?.categories ?? []).map((c) => ({
+      href: `/shop?category=${c.slug}`,
+      label: pick(c, "name"),
+      current: activeCategory === c.slug ? ("page" as const) : undefined,
+    })),
+    { href: "/collections", label: t.nav.collections, current: current("/collections") },
+    { href: "/our-story", label: t.nav.story, current: current("/our-story") },
   ];
-  const current = (href: string) => (location === href || location.startsWith(`${href}/`) ? "page" : undefined);
 
   return (
     <>
       {announcement ? <div className="announce">{announcement}</div> : null}
-      <header className="header on-navy">
+      <header className="header">
         <div className="page header__bar">
           <button type="button" className="menu-btn" aria-expanded={open} onClick={() => setOpen(true)}>
             {t.nav.menu}
           </button>
-          <nav className="header__nav" aria-label="Primary">
-            {links.map((l) => (
-              <Link key={l.href} href={l.href} aria-current={current(l.href)}>
-                {l.label}
-              </Link>
-            ))}
-          </nav>
+          <div className="header__left">
+            <LanguageToggle />
+            <Link href="/contact" aria-current={current("/contact")}>
+              {t.nav.contact}
+            </Link>
+          </div>
           <Link href="/" className="wordmark" aria-label={t.nav.home}>
             MADISON D’OR
           </Link>
           <div className="header__tools">
-            <Link href="/contact" className="contact-link" aria-current={current("/contact")}>
-              {t.nav.contact}
-            </Link>
-            <LanguageToggle />
             <Link href="/bag" className="bag-link" aria-current={current("/bag")}>
               {t.nav.bag}
               {count > 0 ? <span>{count}</span> : null}
             </Link>
           </div>
         </div>
+        <nav className="page header__nav" aria-label="Primary">
+          <Link href="/shop" aria-current={location === "/shop" && !activeCategory ? "page" : undefined}>
+            {t.nav.shop}
+          </Link>
+          {links.map((l) => (
+            <Link key={l.href} href={l.href} aria-current={l.current}>
+              {l.label}
+            </Link>
+          ))}
+        </nav>
       </header>
       {open ? (
-        <div className="drawer on-navy" role="dialog" aria-modal="true" aria-label={t.nav.menu}>
+        <div className="drawer" role="dialog" aria-modal="true" aria-label={t.nav.menu}>
           <div className="drawer__top">
             <span className="wordmark">MADISON D’OR</span>
             <button type="button" onClick={() => setOpen(false)} autoFocus>
@@ -82,7 +94,12 @@ function Header() {
             </button>
           </div>
           <nav aria-label="Primary">
-            {[...links, { href: "/contact", label: t.nav.contact }, { href: "/faq", label: t.nav.faq }].map((l) => (
+            {[
+              { href: "/shop", label: t.nav.shop },
+              ...links,
+              { href: "/contact", label: t.nav.contact },
+              { href: "/faq", label: t.nav.faq },
+            ].map((l) => (
               <Link key={l.href} href={l.href}>
                 {l.label}
               </Link>
@@ -106,7 +123,7 @@ function Footer() {
   ].filter((x): x is [string, string] => /^https?:\/\//.test(x[1] ?? ""));
 
   return (
-    <footer className="footer on-navy">
+    <footer className="footer">
       <div className="page">
         <div className="footer__grid">
           <div className="footer__brand">
