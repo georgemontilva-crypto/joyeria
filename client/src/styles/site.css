@@ -322,14 +322,22 @@ textarea {
   color: var(--white);
 }
 
+.header__tools .bag-link {
+  position: relative;
+  display: inline-flex;
+  padding: 0.35rem;
+  border-bottom: 0;
+}
+
 .bag-link span {
-  display: inline-block;
-  min-width: 1.5em;
-  margin-left: 0.35rem;
-  padding: 0 0.35em;
+  position: absolute;
+  top: -0.1rem;
+  right: -0.35rem;
+  min-width: 1.15rem;
+  padding: 0 0.3em;
   text-align: center;
-  font-size: 0.8rem;
-  line-height: 1.5;
+  font-size: 0.7rem;
+  line-height: 1.15rem;
   background: var(--navy);
   color: var(--white);
   border-radius: 1em;

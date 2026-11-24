@@ -68,9 +68,13 @@ function Header() {
             MADISON D’OR
           </Link>
           <div className="header__tools">
-            <Link href="/bag" className="bag-link" aria-current={current("/bag")}>
-              {t.nav.bag}
-              {count > 0 ? <span>{count}</span> : null}
+            <Link href="/bag" className="bag-link" aria-current={current("/bag")} aria-label={count > 0 ? `${t.nav.bag} (${count})` : t.nav.bag}>
+              <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M2.5 3.5h2.6l2.3 11.2a1.5 1.5 0 0 0 1.5 1.2h8.7a1.5 1.5 0 0 0 1.5-1.2l1.4-7.2H6.1" />
+                <circle cx="9.5" cy="19.6" r="1.3" />
+                <circle cx="17" cy="19.6" r="1.3" />
+              </svg>
+              {count > 0 ? <span aria-hidden="true">{count}</span> : null}
             </Link>
           </div>
         </div>
