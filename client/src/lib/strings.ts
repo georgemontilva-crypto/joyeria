@@ -35,7 +35,7 @@ const en = {
     storyTitle: "Jewelry sold the direct way",
     storyBody: "Madison D’Or sells fine jewelry straight to the person who will wear it. No showroom markup, so the quality of the gold and the stones is what the price reflects.",
     storyCta: "Read our story",
-    storyAlt: "Wrist wearing a gold mariner bracelet with a teddy charm",
+    storyAlt: "Ear wearing a faceted gold drop earring",
     wornTitle: "Made to be worn every day",
   },
   shop: {
@@ -146,7 +146,7 @@ const en = {
     closingTitle: "Have a question about a piece?",
     closingBody: "Ask for the weight, the length or more photos. We answer in English and Spanish.",
     closingCta: "Write to us",
-    imageAlt: "Gold cross pendant set with emeralds, worn over a white linen shirt",
+    imageAlt: "Gold curb chain worn with an open white linen shirt",
   },
   contact: {
     title: "Contact",
@@ -318,7 +318,7 @@ const es: Strings = {
     storyTitle: "Joyería vendida de forma directa",
     storyBody: "Madison D’Or vende alta joyería directamente a quien la va a llevar. Sin el sobreprecio de una vitrina, el precio refleja la calidad del oro y de las piedras.",
     storyCta: "Leer nuestra historia",
-    storyAlt: "Muñeca con una pulsera marinera de oro con dije de osito",
+    storyAlt: "Oreja con un arete de gota de oro facetado",
     wornTitle: "Hechas para llevarse todos los días",
   },
   shop: {
@@ -429,7 +429,7 @@ const es: Strings = {
     closingTitle: "¿Tiene una pregunta sobre una pieza?",
     closingBody: "Pida el peso, el largo o más fotos. Respondemos en español e inglés.",
     closingCta: "Escríbanos",
-    imageAlt: "Cruz de oro con esmeraldas sobre una camisa de lino blanco",
+    imageAlt: "Cadena barbada de oro con una camisa de lino blanco abierta",
   },
   contact: {
     title: "Contacto",

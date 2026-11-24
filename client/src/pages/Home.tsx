@@ -10,11 +10,25 @@ export function Home() {
   const site = trpc.shop.site.useQuery();
   const featured = trpc.shop.products.useQuery({ featured: true, sort: "curated" });
   const collections = (site.data?.collections ?? []).slice(0, 3);
-  // Two photos of pieces being worn, each leading to its category (or the whole shop if it was removed).
+  const catalog = trpc.shop.products.useQuery({ sort: "curated" });
+  // Photos of pieces being worn. Each leads to its piece; if that piece has been
+  // removed from the catalog, to its category instead.
   const worn = [
-    { image: "/editorial/v4/tricolor-bracelet.jpg", slug: "bracelets" },
-    { image: "/editorial/v4/drop-earring.jpg", slug: "earrings" },
-  ].map((w) => ({ ...w, category: site.data?.categories.find((c) => c.slug === w.slug) }));
+    { image: "/editorial/v4/man-curb-chain.jpg", product: "curb-chain", category: "chains" },
+    { image: "/editorial/v4/hoop-earring.jpg", product: "slim-hoops", category: "earrings" },
+    { image: "/editorial/v4/tricolor-bracelet.jpg", product: "tricolor-charm-bracelet", category: "bracelets" },
+    { image: "/editorial/v4/emerald-stud.jpg", product: "emerald-studs", category: "earrings" },
+    { image: "/editorial/v4/teddy-bracelet.jpg", product: "teddy-charm-bracelet", category: "bracelets" },
+    { image: "/editorial/v4/mariner-stud.jpg", product: "mariner-studs", category: "earrings" },
+  ].map((w) => {
+    const product = catalog.data?.find((p) => p.slug === w.product);
+    const category = site.data?.categories.find((c) => c.slug === w.category);
+    if (product) return { image: w.image, href: `/product/${product.slug}`, label: pick(product, "name") };
+    if (!catalog.data) return { image: w.image, href: `/product/${w.product}`, label: "" };
+    return category
+      ? { image: w.image, href: `/shop?category=${category.slug}`, label: pick(category, "name") }
+      : { image: w.image, href: "/shop", label: t.home.viewAll };
+  });
 
   return (
     <>
@@ -104,12 +118,12 @@ export function Home() {
             <h2>{t.home.wornTitle}</h2>
           </div>
           <div className="worn">
-            {worn.map((w) => (
-              <Link key={w.slug} href={w.category ? `/shop?category=${w.slug}` : "/shop"} className="worn__tile">
-                <div className="worn__img">
+            {worn.map((w, i) => (
+              <Link key={w.image} href={w.href} className={i === 0 ? "worn__tile worn__tile--lead" : "worn__tile"}>
+                <span className="worn__img">
                   <img src={w.image} alt="" loading="lazy" />
-                </div>
-                <span className="link">{w.category ? t.collections.shop(pick(w.category, "name")) : t.home.viewAll}</span>
+                </span>
+                <span className="worn__name">{w.label}</span>
               </Link>
             ))}
           </div>
@@ -118,7 +132,7 @@ export function Home() {
 
       <section className="feature">
         <div className="feature__img">
-          <img src="/editorial/v4/teddy-bracelet.jpg" alt={t.home.storyAlt} loading="lazy" />
+          <img src="/editorial/v4/drop-earring.jpg" alt={t.home.storyAlt} loading="lazy" />
         </div>
         <div className="feature__body">
           <h2>{t.story.closingTitle}</h2>
