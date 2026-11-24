@@ -14,6 +14,7 @@
   --white: #ffffff;
   --tile: #f1f2f5; /* behind product photos while they load */
   --tint: #f6f7f9; /* alternate section and footer background */
+  --ivory: #f3efe9; /* warm panel beside the photographs of pieces being worn */
   --line: #e1e4ea;
   --slate: #55617a;
   --danger: #a3261f;
@@ -403,25 +404,28 @@ textarea {
 }
 
 /* ── Hero ──────────────────────────────────────────────────────────────────── */
-/* The one dark field on the page: a display figure wearing a chain, lit against navy. */
+/* Half message, half photograph: a piece being worn, edge to edge. */
 
 .hero {
-  background: radial-gradient(ellipse 55% 80% at 74% 42%, #153264 0%, var(--navy) 100%);
-  color: var(--white);
-  overflow: hidden;
-}
-
-.hero__inner {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  align-items: center;
-  gap: 2rem;
-  min-height: clamp(30rem, 68vh, 42rem);
+  min-height: clamp(30rem, 74vh, 46rem);
+  background: var(--ivory);
+  color: var(--navy);
 }
 
 .hero__copy {
-  padding-block: 4rem;
-  max-width: 31rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  /* keeps the text on the same left edge as the rest of the page */
+  padding: 3.5rem 2.5rem 3.5rem max(1.25rem, calc((100vw - 78rem) / 2));
+}
+
+.hero__text {
+  width: 100%;
+  max-width: 33rem;
+  margin-right: auto;
   animation: rise 0.9s ease-out 0.15s both;
 }
 
@@ -433,7 +437,7 @@ textarea {
 }
 
 .hero h1 {
-  font-size: clamp(2.5rem, 4.6vw, 4.25rem);
+  font-size: clamp(2.5rem, 4.4vw, 4.1rem);
   line-height: 1.04;
 }
 
@@ -441,7 +445,7 @@ textarea {
   margin-top: 1.25rem;
   max-width: 28rem;
   font-size: 1.1rem;
-  color: #cfd6e4;
+  color: #46506a;
 }
 
 .hero__actions {
@@ -455,20 +459,20 @@ textarea {
   font-size: 1.05rem;
 }
 
-.hero__figure {
+.hero__photo {
   position: relative;
-  align-self: stretch;
   min-height: 24rem;
+  background: #ddd7d0;
 }
 
-/* The figure is cropped at the top of the photo, so it hangs from the top edge of the hero. */
-.hero__figure img {
+.hero__photo img {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  object-position: 50% 0;
+  object-fit: cover;
+  /* hold the neckline and the chain in frame at any width */
+  object-position: 50% 68%;
 }
 
 /* ── Sections ──────────────────────────────────────────────────────────────── */
@@ -680,12 +684,48 @@ textarea {
   margin-top: 1.5rem;
 }
 
+/* Two photographs of pieces being worn */
+
+.worn {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.worn__tile {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+}
+
+.worn__img {
+  aspect-ratio: 1;
+  overflow: hidden;
+  background: var(--tile);
+}
+
+.worn__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.worn__tile:hover .worn__img img {
+  transform: scale(1.03);
+}
+
+.worn__tile .link {
+  display: inline-block;
+  margin-top: 1rem;
+}
+
 /* Photo beside a centred message */
 
 .feature {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  background: var(--tint);
+  background: var(--ivory);
 }
 
 .feature__img img {
@@ -1546,20 +1586,19 @@ textarea {
     display: block;
   }
 
-  .hero__inner {
+  .hero {
     grid-template-columns: 1fr;
     min-height: 0;
-    gap: 0;
   }
 
-  .hero__figure {
+  .hero__photo {
     order: -1;
     min-height: 0;
-    height: 22rem;
+    aspect-ratio: 5 / 4;
   }
 
   .hero__copy {
-    padding-block: 2rem 3rem;
+    padding: 2.25rem 1.25rem 3rem;
   }
 
   .grid {
@@ -1612,6 +1651,15 @@ textarea {
   .trio {
     grid-template-columns: 1fr;
     gap: 2.25rem;
+  }
+
+  .worn {
+    grid-template-columns: 1fr;
+    gap: 2.25rem;
+  }
+
+  .hero__photo {
+    aspect-ratio: 1;
   }
 
   .type-grid,

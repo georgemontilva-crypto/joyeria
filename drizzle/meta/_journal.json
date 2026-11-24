@@ -29,6 +29,13 @@
       "when": 1795296344662,
       "tag": "0003_lighter_backdrop",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "5",
+      "when": 1795557226558,
+      "tag": "0004_worn_photos",
+      "breakpoints": true
     }
   ]
 }

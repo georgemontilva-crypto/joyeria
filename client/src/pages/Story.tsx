@@ -13,7 +13,7 @@ export function Story() {
       </header>
       <div className="story">
         <div className="story__photo">
-          <img src="/catalog/v3/emerald-solitaire-pendant-1.jpg" alt={t.story.imageAlt} />
+          <img src="/editorial/v4/emerald-cross.jpg" alt={t.story.imageAlt} />
         </div>
         <div className="prose" style={{ paddingBottom: 0 }}>
           {t.story.sections.map((s) => (

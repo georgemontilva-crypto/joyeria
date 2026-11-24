@@ -10,12 +10,17 @@ export function Home() {
   const site = trpc.shop.site.useQuery();
   const featured = trpc.shop.products.useQuery({ featured: true, sort: "curated" });
   const collections = (site.data?.collections ?? []).slice(0, 3);
+  // Two photos of pieces being worn, each leading to its category (or the whole shop if it was removed).
+  const worn = [
+    { image: "/editorial/v4/tricolor-bracelet.jpg", slug: "bracelets" },
+    { image: "/editorial/v4/drop-earring.jpg", slug: "earrings" },
+  ].map((w) => ({ ...w, category: site.data?.categories.find((c) => c.slug === w.slug) }));
 
   return (
     <>
-      <section className="hero on-navy">
-        <div className="page hero__inner">
-          <div className="hero__copy">
+      <section className="hero">
+        <div className="hero__copy">
+          <div className="hero__text">
             <h1>{t.home.title}</h1>
             <p className="hero__lead">{t.home.lead}</p>
             <div className="hero__actions">
@@ -27,9 +32,9 @@ export function Home() {
               </Link>
             </div>
           </div>
-          <div className="hero__figure">
-            <img src="/editorial/v3/hero-figure.webp" alt={t.home.heroAlt} fetchPriority="high" />
-          </div>
+        </div>
+        <div className="hero__photo">
+          <img src="/editorial/v4/hero-curb-chain.jpg" alt={t.home.heroAlt} fetchPriority="high" />
         </div>
       </section>
 
@@ -46,7 +51,7 @@ export function Home() {
           {site.data && collections.length < 3 ? (
             <Link href="/shop?sort=newest" className="trio__tile">
               <div className="trio__img">
-                <img src="/catalog/v3/bypass-ring-1.jpg" alt="" loading="lazy" />
+                <img src="/editorial/v4/sun-bracelet.jpg" alt="" loading="lazy" />
               </div>
               <h3>{t.home.newTitle}</h3>
               <span className="link">{t.home.newCta}</span>
@@ -93,9 +98,27 @@ export function Home() {
         </div>
       </section>
 
+      <section className="section section--tint">
+        <div className="page">
+          <div className="section__head">
+            <h2>{t.home.wornTitle}</h2>
+          </div>
+          <div className="worn">
+            {worn.map((w) => (
+              <Link key={w.slug} href={w.category ? `/shop?category=${w.slug}` : "/shop"} className="worn__tile">
+                <div className="worn__img">
+                  <img src={w.image} alt="" loading="lazy" />
+                </div>
+                <span className="link">{w.category ? t.collections.shop(pick(w.category, "name")) : t.home.viewAll}</span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="feature">
         <div className="feature__img">
-          <img src="/editorial/v3/emerald-stud.jpg" alt={t.home.storyAlt} loading="lazy" />
+          <img src="/editorial/v4/teddy-bracelet.jpg" alt={t.home.storyAlt} loading="lazy" />
         </div>
         <div className="feature__body">
           <h2>{t.story.closingTitle}</h2>

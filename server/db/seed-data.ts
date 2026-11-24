@@ -56,7 +56,7 @@ export const seedCollections = [
     nameEs: "Esmeraldas",
     descriptionEn: "Green stones set in yellow gold: a cross, a solitaire, a pair of studs and a beaded bracelet.",
     descriptionEs: "Piedras verdes engastadas en oro amarillo: una cruz, un solitario, un par de topos y una pulsera de esferas.",
-    image: "/editorial/v3/emerald-bracelet.jpg",
+    image: "/editorial/v4/emerald-cross.jpg",
   },
   {
     slug: "mariner-link",
@@ -64,7 +64,7 @@ export const seedCollections = [
     nameEs: "Eslabón marinero",
     descriptionEn: "The oval anchor link, carried across a chain, bracelets and studs.",
     descriptionEs: "El eslabón ovalado tipo ancla, en cadena, pulseras y topos.",
-    image: "/catalog/v3/mariner-chain-2.jpg",
+    image: "/editorial/v4/heart-bracelet.jpg",
   },
 ];
 
